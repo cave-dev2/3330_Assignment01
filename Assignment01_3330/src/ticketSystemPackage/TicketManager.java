@@ -85,4 +85,16 @@ public class TicketManager {
 			return ticketAdmitted;
 		}
 	}
+	
+	// printAll() method: 
+	public void printAll() {
+		//Call printAll() method from TicketBook class to print all tickets in the ticketBook
+		this.ticketBook.printAll();
+	}
+	
+	// printForEvent() method():
+	public void printForEvent(Event event) {
+		// Call printForEvent() method from TicketBook class to print all tickets pertaining to an event
+		this.ticketBook.printForEvent(event);
+	}
 }	

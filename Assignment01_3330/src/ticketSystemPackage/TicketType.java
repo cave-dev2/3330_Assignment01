@@ -49,7 +49,7 @@ public class TicketType {
 	// Override toString() method
 	@Override 
 	public String toString() {
-		String description = "Ticket Type: " + this.name + ", Ticket Price: $" + this.price;
+		String description = "Ticket type: " + this.name + ", Ticket Price: $" + this.price;
 		return description;
 	}
 }

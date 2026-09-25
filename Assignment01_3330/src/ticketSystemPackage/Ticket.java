@@ -121,7 +121,7 @@ public class Ticket {
 	public String toString() {
 		String description = "ID: " + this.id + 
 				"\nEvent: " + this.event + 
-				"\nTicket Type: " + this.ticketType + 
+				"\n" + this.ticketType + 
 				"\nStudent Name: " + this.studentName + 
 				"\nCanceled: " + this.canceled + 
 				"\nAdmitted: " + this.admitted;
