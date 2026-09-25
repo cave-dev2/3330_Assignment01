@@ -39,7 +39,7 @@ public class TicketBook {
 	private final int maxCount = 100;
 
 	//Class constructor
-	public TicketBook(Ticket[] tickets, int count) {
+	public TicketBook() {
 		
 		//Fill variables
 		this.tickets = new Ticket[maxCount]; 
@@ -77,7 +77,7 @@ public class TicketBook {
 	public int printAll() {
 		
 		for (Ticket printTicket : tickets) {
-			System.out.print(printTicket);
+			if (printTicket != null) System.out.println(printTicket + "\n");
 		}
 		return 0;
 		
@@ -86,9 +86,13 @@ public class TicketBook {
 	//Prints all tickets connected to event
 	public int printForEvent(Event event) {
 		
+		if (event == null) {
+			throw new IllegalArgumentException("Event cannot be null for print");
+		}
+		
 		for (Ticket printTicket : tickets) {
-			if (printTicket.getEvent() == event) {
-				System.out.print(printTicket);
+			if (printTicket != null) {
+				if (printTicket.getEvent() == event) System.out.println(printTicket + "\n");
 			}
 		}
 		return 0;
