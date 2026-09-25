@@ -31,4 +31,95 @@ them consistently.
 
 public class Ticket {
 	
+	// Define class fields (id, event, ticketType, studentName, canceled, admitted):
+	private final int id; 
+	private final Event event; 
+	private final TicketType ticketType; 
+	private final String studentName; 
+	private boolean canceled = false; 
+	private boolean admitted = false; 
+	
+	// Class constructor with fail fast validation checking
+	public Ticket(int id, Event event, TicketType ticketType, String studentName) {
+		// Validation checking
+		if(id <= 0) {
+			throw new IllegalArgumentException(); 
+		}
+		if(event == null) {
+			throw new IllegalArgumentException();
+		}
+		if(ticketType == null) {
+			throw new IllegalArgumentException();
+		}
+		if(studentName == null || studentName.isBlank()) {
+			throw new IllegalArgumentException();
+		}
+		
+		// Field assignment
+		this.id = id; 
+		this.event = event; 
+		this.ticketType = ticketType; 
+		this.studentName = studentName; 
+		
+	}
+	
+	// Methods for canceling and admitting tickets
+		// Ticket admission: 
+	public boolean admit() {
+		// Check if ticket has already been canceled or admitted
+		if(this.canceled == true) {
+			System.out.println("ERROR: Ticket has been canceled.");
+			return false;
+		}
+		if(this.admitted == true) {
+			System.out.println("ERROR: Ticket has already been admitted.");
+			return false;
+		}
+		
+		// If validation passes, admit ticket and return true
+		this.admitted = true; 
+		return true; 
+	}
+	
+		// Ticket Cancellation: 
+	public boolean cancel() {
+		// Check if ticket has already been canceled or admitted
+		if(this.canceled == true) {
+			System.out.println("ERROR: Ticket has already been canceled.");
+			return false;
+		}
+		if(this.admitted == true) {
+			System.out.println("ERROR: Ticket has already been admitted.");
+			return false;
+		}
+		
+		// If validation passes, cancel ticket and return true
+		this.canceled = true; 
+		return true; 
+	}
+	
+	// isCanceled and isAdmitted methods to check the status of a ticket
+		// isCanceled() method
+	public boolean isCanceled() {
+		// Return the boolean status of this.canceled
+		return this.canceled; 
+	}
+	
+		// isAdmitted method()
+	public boolean isAdmitted() {
+		// Return the boolean status of this.admitted
+		return this.admitted; 
+	}
+	
+	// Override toString() method
+	@Override 
+	public String toString() {
+		String description = "ID: " + this.id + 
+				"\nEvent: " + this.event + 
+				"\nTicket Type: " + this.ticketType + 
+				"\nStudent Name: " + this.studentName + 
+				"\nCanceled: " + this.canceled + 
+				"\nAdmitted: " + this.admitted;
+		return description; 
+	}
 }

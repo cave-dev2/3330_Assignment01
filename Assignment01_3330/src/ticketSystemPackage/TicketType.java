@@ -17,10 +17,14 @@ Required behavior:
 Design note: This is a strong candidate for an immutable class.
  */
 public class TicketType {
+	
+	// Define class fields (name, price):
 	private final String name; 
 	private final double price; 
 	
+	// Class constructor with fail fast validation checking
 	public TicketType(String name, double price) {
+		// Validation checking
 		if(name == null || name.isBlank()) {
 			throw new IllegalArgumentException(); 
 		}
@@ -28,10 +32,12 @@ public class TicketType {
 			throw new IllegalArgumentException();
 		}
 		
+		// Assign fields
 		this.name = name; 
 		this.price = price;
 	}
 	
+	// Getter methods for name and price
 	public String getName() {
 		return this.name; 
 	}
@@ -40,9 +46,10 @@ public class TicketType {
 		return this.price;
 	}
 	
+	// Override toString() method
 	@Override 
 	public String toString() {
-		String description = "Ticket Type: " + this.name + ", Ticket Price: " + this.price;
+		String description = "Ticket Type: " + this.name + ", Ticket Price: $" + this.price;
 		return description;
 	}
 }
