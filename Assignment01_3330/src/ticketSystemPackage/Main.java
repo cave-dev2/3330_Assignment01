@@ -13,7 +13,7 @@ Minimum demo requirements:
 trying to admit a canceled ticket)
 • Print all tickets
 • Print tickets for one specific event
- */
+*/
 
 public class Main {
 
@@ -74,7 +74,8 @@ public class Main {
 		//TicketType fakeTicketType = new TicketType("Free Money", -20.00);
 		//ticketManager.createTicket(fakeEvent, fakeTicketType, "Sybil");
 		//ticketManager.printForEvent(fakeEvent);
-		ticketManager.admitTicket(12);
+		//ticketManager.admitTicket(12);
+		ticketManager.admitTicket(2);
 		
 	}
 

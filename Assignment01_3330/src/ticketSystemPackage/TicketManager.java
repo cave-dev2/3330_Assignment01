@@ -2,6 +2,7 @@ package ticketSystemPackage;
 
 /*
 Coordinates the system at a higher level.
+
 Required behavior:
 • Stores a TicketBook
 • Generates ticket IDs using a private counter field (do not use a static field for application
@@ -10,16 +11,17 @@ state)
 – createTicket(Event event, TicketType type, String studentName)
 – cancelTicket(int id)
 – admitTicket(int id)
-5
 • High-level operation methods should return meaningful values when appropriate so they can
 be tested directly
+
 Design requirements:
 • Avoid reaching through objects to manipulate internals
 • Avoid long chains like a.getB().getC().doSomething()
 • Delegate behavior to the class that owns the relevant data
 • Do not duplicate ticket-state rules in the manager. The Ticket class should be responsible
 for its own state transitions.
- */
+
+*/
 
 public class TicketManager {
 
@@ -51,6 +53,11 @@ public class TicketManager {
 	// cancelTicket() method:
 	public boolean cancelTicket(int ticketId) {
 		
+		// Check that ticketID is not invalid
+		if(ticketId >= this.nextId || ticketId < 1) {
+			throw new IllegalArgumentException("Ticket ID for cancellation cannot be out of list");
+		}
+		
 		// Call findById() method from TicketBook class to
 		// find ticket in ticketBook given ticketId
 		Ticket ticketToCancel = this.ticketBook.findById(ticketId);
@@ -69,6 +76,11 @@ public class TicketManager {
 	
 	// admitTicket() method: 
 	public boolean admitTicket(int ticketId) {
+		
+		// Check that ticketID is not invalid
+		if(ticketId >= this.nextId || ticketId < 1) {
+			throw new IllegalArgumentException("Ticket ID for admission cannot be out of list");
+		}
 		
 		// Call findById() method from TicketBook class to 
 		// find ticket in ticketBook given ticketId

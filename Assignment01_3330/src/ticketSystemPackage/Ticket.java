@@ -32,7 +32,7 @@ or admit() may return boolean to indicate success or failure. Printing methods m
 Open design choice: Decide what should happen if someone tries to admit a canceled ticket,
 cancel an admitted ticket, admit a ticket twice, or cancel a ticket twice. Pick clear rules and enforce
 them consistently.
- */
+*/
 
 public class Ticket {
 	
@@ -48,16 +48,16 @@ public class Ticket {
 	public Ticket(int id, Event event, TicketType ticketType, String studentName) {
 		// Validation checking
 		if(id <= 0) {
-			throw new IllegalArgumentException(); 
+			throw new IllegalStateException("Ticket ID cannot be negative");
 		}
 		if(event == null) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Ticket Event cannot be null");
 		}
 		if(ticketType == null) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Ticket Type cannot be null");
 		}
 		if(studentName == null || studentName.isBlank()) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Ticket Student Name cannot be null");
 		}
 		
 		// Field assignment
@@ -73,12 +73,10 @@ public class Ticket {
 	public boolean admit() {
 		// Check if ticket has already been canceled or admitted
 		if(this.canceled == true) {
-			System.out.println("ERROR: Ticket has been canceled.");
-			return false;
+			throw new IllegalArgumentException("Canceled Ticket cannot be admitted");
 		}
 		if(this.admitted == true) {
-			System.out.println("ERROR: Ticket has already been admitted.");
-			return false;
+			throw new IllegalArgumentException("Admitted Ticket cannot be admitted again");
 		}
 		
 		// If validation passes, admit ticket and return true
@@ -90,12 +88,10 @@ public class Ticket {
 	public boolean cancel() {
 		// Check if ticket has already been canceled or admitted
 		if(this.canceled == true) {
-			System.out.println("ERROR: Ticket has already been canceled.");
-			return false;
+			throw new IllegalArgumentException("Canceled Ticket cannot be canceled again");
 		}
 		if(this.admitted == true) {
-			System.out.println("ERROR: Ticket has already been admitted.");
-			return false;
+			throw new IllegalArgumentException("Admitted Ticket cannot be canceled");
 		}
 		
 		// If validation passes, cancel ticket and return true

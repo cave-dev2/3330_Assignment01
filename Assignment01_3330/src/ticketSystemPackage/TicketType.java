@@ -2,6 +2,7 @@ package ticketSystemPackage;
 
 /*
 Represents a type of ticket for an event.
+
 Required data:
 • String name (examples: "Student", "General", "VIP")
 • double price (must not be negative)
@@ -14,8 +15,9 @@ Required behavior:
 • Constructor validates invariants (fail fast)
 • Getters as needed
 • toString() that prints the ticket type and price in a meaningful way
+
 Design note: This is a strong candidate for an immutable class.
- */
+*/
 public class TicketType {
 	
 	// Define class fields (name, price):
@@ -26,10 +28,10 @@ public class TicketType {
 	public TicketType(String name, double price) {
 		// Validation checking
 		if(name == null || name.isBlank()) {
-			throw new IllegalArgumentException(); 
+			throw new IllegalArgumentException("TicketType Name cannot be null"); 
 		}
 		if(price < 0) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("TicketType Price cannot be negative");
 		}
 		
 		// Assign fields
@@ -49,7 +51,7 @@ public class TicketType {
 	// Override toString() method
 	@Override 
 	public String toString() {
-		String description = "Ticket type: " + this.name + ", Ticket Price: $" + this.price;
+		String description = this.name + " ticket for $" + String.format("%.2f", this.price);
 		return description;
 	}
 }

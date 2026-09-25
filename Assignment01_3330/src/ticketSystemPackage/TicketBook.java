@@ -27,7 +27,7 @@ pass it into the book.
 Open design choice: Decide how printForEvent determines whether a ticket belongs to
 the requested event without implementing equals. You may compare references or use another
 approach that stays within the topics covered. Document your choice in a short comment.
- */
+*/
 
 public class TicketBook {
 
